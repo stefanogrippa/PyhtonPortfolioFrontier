@@ -5,8 +5,8 @@
 
 # http://tesi.luiss.it/25592/1/214651_LORETI_LORENZO.pdf
 
-#import pip
-#pip.main(['install', 'pandas_datareader'])
+import pip
+pip.main(['install', 'pandas_datareader'])
 
 import pandas_datareader.data as web
 nome_titoli=["QQQ", "BP"]
