@@ -42,7 +42,7 @@ cf.go_offline()
 #data.head();
 mioVettorex = range(0,10)
 mioVettorey = np.linspace(-np.pi, np.pi, 10)
-data.iplot(x=mioVettore.,y=mioVettorey,mode='lines+markers')
+#data.iplot(x=mioVettorex,y=mioVettorey,mode='lines+markers')
 
 
 
