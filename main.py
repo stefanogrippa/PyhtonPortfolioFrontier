@@ -9,7 +9,7 @@
 #pip.main(['install', 'pandas_datareader'])
 
 import pandas_datareader.data as web
-nome_titoli=["QQQ", "BP"]
+nome_titoli=["QQQ", "FTSE", "FCA.MI"]
 data_inizio='2019-9-14'
 data_fine='2020-9-14'
 print('inizio caricamento')
@@ -26,7 +26,11 @@ cf.go_offline()
 
 for titolo in nome_titoli:
     # MAMMA
-    dataframe=web.get_data_yahoo(titolo, data_inizio, data_fine, interval='d')
+    try:
+        dataframe=web.get_data_yahoo(titolo, data_inizio, data_fine, interval='d')
+    except:
+        print ('titolo non trovato:' + titolo)
+        continue
     print(titolo,dataframe.shape)
     print(titolo + 'last' ,dataframe.tail())
     print('fine caricamento')
@@ -39,7 +43,7 @@ for titolo in nome_titoli:
     lunghezza=lista_chiusura.size
     indice += 1
     returns = dataframe['Close'].pct_change()
-    ((1 + returns).cumprod() - 1).plot(title= titolo + 'Cumulative Returns')
+    ((1 + returns).cumprod() - 1).plot(title= titolo + ' Cumulative Returns')
     #dataframe.plot(title= titolo + 'Adj. Closing Price')
     #dataframe.set_index('Date')['Adj'].plot()
     #dataframe.plot(x='Date',y='Close')
@@ -66,7 +70,7 @@ for titolo in nome_titoli:
 
 # Show the plot
 #plt.show()
-#data.iplot(x=mioVettorex,y=mioVettorey,mode='lines+markers')
+#data.iplot(x=mioViettorex,y=mioVettorey,mode='lines+markers')
 
 
 
