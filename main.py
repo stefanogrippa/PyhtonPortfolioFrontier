@@ -10,8 +10,8 @@
 
 import pandas_datareader.data as web
 nome_titoli=["QQQ", "BP"]
-data_inizio='2015-9-3'
-data_fine='2020-9-3'
+data_inizio='2019-9-14'
+data_fine='2020-9-14'
 print('inizio caricamento')
 import numpy as np
 import matplotlib.pyplot as plt
@@ -38,7 +38,9 @@ for titolo in nome_titoli:
     i=0
     lunghezza=lista_chiusura.size
     indice += 1
-    dataframe.plot(title= titolo + 'Adj. Closing Price')
+    returns = dataframe.pct_change()
+    ((1 + returns).cumprod() - 1).plot(title= titolo + 'Cumulative Returns')
+    #dataframe.plot(title= titolo + 'Adj. Closing Price')
     #dataframe.set_index('Date')['Adj'].plot()
     #dataframe.plot(x='Date',y='Close')
     plt.show()
