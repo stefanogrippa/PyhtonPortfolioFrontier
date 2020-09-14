@@ -5,8 +5,8 @@
 
 # http://tesi.luiss.it/25592/1/214651_LORETI_LORENZO.pdf
 
-import pip
-pip.main(['install', 'pandas_datareader'])
+#import pip
+#pip.main(['install', 'pandas_datareader'])
 
 import pandas_datareader.data as web
 nome_titoli=["QQQ", "BP"]
@@ -14,34 +14,56 @@ data_inizio='2015-9-3'
 data_fine='2020-9-3'
 print('inizio caricamento')
 import numpy as np
-#import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
 import cufflinks as cf
 indice = 0
 #lunghezza = len(nome_titoli)
+
+init_notebook_mode(connected=True)
+cf.go_offline()
+
+
 for titolo in nome_titoli:
     # MAMMA
-    data=web.get_data_yahoo(titolo, data_inizio, data_fine, interval='d')
-    print(titolo,data.shape)
-    #print(titolo + 'last' ,data.tail())
+    dataframe=web.get_data_yahoo(titolo, data_inizio, data_fine, interval='d')
+    print(titolo,dataframe.shape)
+    print(titolo + 'last' ,dataframe.tail())
     print('fine caricamento')
 
 
-    quotazioni=data.values
+    quotazioni=dataframe.values
     lista_chiusura=quotazioni[:,5]
     lista_rendimenti=np.array([])
     i=0
     lunghezza=lista_chiusura.size
     indice += 1
+    dataframe.plot(title= titolo + 'Adj. Closing Price')
+    #dataframe.set_index('Date')['Adj'].plot()
+    #dataframe.plot(x='Date',y='Close')
+    plt.show()
+    plt.savefig(titolo);
 
 #https://michaelsaruggia.com/data-visualization-plotly/
 
-init_notebook_mode(connected=True)
-cf.go_offline()
+#init_notebook_mode(connected=True)
+#cf.go_offline()
 #for titolo in enumerate(nome_titoli):
 #data.head();
-mioVettorex = range(0,10)
-mioVettorey = np.linspace(-np.pi, np.pi, 10)
+
+
+
+# Prepare the data
+#x = np.linspace(0, 10, 100)
+
+# Plot the data
+#plt.plot(x, x, label='linear')
+
+# Add a legend
+#plt.legend()
+
+# Show the plot
+#plt.show()
 #data.iplot(x=mioVettorex,y=mioVettorey,mode='lines+markers')
 
 
