@@ -42,8 +42,12 @@ for titolo in nome_titoli:
     i=0
     lunghezza=lista_chiusura.size
     indice += 1
-    returns = dataframe['Close'].pct_change()
-    ((1 + returns).cumprod() - 1).plot(title= titolo + ' Cumulative Returns')
+
+    quotaChiusura=dataframe['Close']
+    quotaChiusura.plot(title=titolo + ' quota')
+
+    #returns = dataframe['Close'].pct_change()
+    #((1 + returns).cumprod() - 1).plot(title= titolo + ' Cumulative Returns')
     #dataframe.plot(title= titolo + 'Adj. Closing Price')
     #dataframe.set_index('Date')['Adj'].plot()
     #dataframe.plot(x='Date',y='Close')
