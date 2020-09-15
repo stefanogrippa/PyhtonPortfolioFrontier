@@ -48,7 +48,8 @@ for titolo in nome_titoli:
     #dataframe.set_index('Date')['Adj'].plot()
     #dataframe.plot(x='Date',y='Close')
     plt.show()
-    plt.savefig(titolo);
+    nomefilegrafico = titolo + '.jpg';
+    plt.savefig(nomefilegrafico);
 
 #https://michaelsaruggia.com/data-visualization-plotly/
 
