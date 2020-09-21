@@ -9,7 +9,13 @@
 #pip.main(['install', 'pandas_datareader'])
 
 import pandas_datareader.data as web
-nome_titoli=["L100.L", "FCA.MI"]
+file1 = open('titoli.txt', 'r')
+Lines = file1.readlines()
+nome_titoli = []
+for line in Lines:
+    print(line)
+    #nome_titoli.append(line)
+nome_titoli=["L100.L", "QQQ"]
 data_inizio='2019-9-14'
 data_fine='2020-9-14'
 print('inizio caricamento')
