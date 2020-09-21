@@ -9,12 +9,44 @@
 #pip.main(['install', 'pandas_datareader'])
 
 import pandas_datareader.data as web
+import json
+
+data = {}
+data['people'] = []
+data['people'].append({
+    'name': 'QQQ',
+    'website': '',
+    'from': ''
+})
+data['people'].append({
+    'name': 'FCA.MI',
+    'website': '',
+    'from': ''
+})
+data['people'].append({
+    'name': 'L100.L',
+    'website': '',
+    'from': ''
+})
+
+with open('data.txt', 'w') as outfile:
+    json.dump(data, outfile)
+
+with open('data.txt') as json_file:
+    data = json.load(json_file)
+    for p in data['people']:
+        print('Name: ' + p['name'])
+        print('Website: ' + p['website'])
+        print('From: ' + p['from'])
+        print('')
+
+
 file1 = open('titoli.txt', 'r')
 Lines = file1.readlines()
 nome_titoli = []
-for line in Lines:
-    print('titolo da file di testo=' + line)
-    nome_titoli.append(line)
+for p in data['people']:
+    print('titolo da file di testo=' + p['name'])
+    #nome_titoli.append(p)
 
 #nome_titoli.append("L100.L")
 #nome_titoli.append("QQQ")
@@ -33,18 +65,18 @@ indice = 0
 init_notebook_mode(connected=True)
 cf.go_offline()
 
-titolo = ""
-for titolo in nome_titoli:
+#titolo = ""
+for p in data['people']:
     # MAMMA
     try:
         #titolo = "" + line + ""
-        print('titolo da vettore=' + titolo)
-        dataframe=web.get_data_yahoo(titolo, data_inizio, data_fine, interval='d')
+        print('titolo da vettore=' + p['name'])
+        dataframe=web.get_data_yahoo(p['name'], data_inizio, data_fine, interval='d')
     except:
-        print ('titolo non trovato:' + titolo)
+        print ('titolo non trovato:' + p['name'])
         continue
-    print(line,dataframe.shape)
-    print(line + 'last' ,dataframe.tail())
+    print(p['name'],dataframe.shape)
+    print(p['name'] + 'last' ,dataframe.tail())
     print('fine caricamento')
 
 
@@ -56,7 +88,7 @@ for titolo in nome_titoli:
     indice += 1
 
     quotaChiusura=dataframe['Close']
-    quotaChiusura.plot(title=titolo + ' quota')
+    quotaChiusura.plot(title=p['name'] + ' quota')
 
     #returns = dataframe['Close'].pct_change()
     #((1 + returns).cumprod() - 1).plot(title= titolo + ' Cumulative Returns')
@@ -64,7 +96,7 @@ for titolo in nome_titoli:
     #dataframe.set_index('Date')['Adj'].plot()
     #dataframe.plot(x='Date',y='Close')
     plt.show()
-    nomefilegrafico = titolo + '.jpg';
+    nomefilegrafico = p['name'] + '.jpg';
     plt.savefig(nomefilegrafico);
 
 #https://michaelsaruggia.com/data-visualization-plotly/
@@ -91,10 +123,10 @@ for titolo in nome_titoli:
 
 
 
-while(i < lunghezza - 1):
-    rendimento = np.log(lista_chiusura[i+1]/lista_chiusura[i])
-    lista_rendimenti = np.append(lista_rendimenti, [rendimento])
-    i = i + 1
+#while(i < lunghezza - 1):
+#    rendimento = np.log(lista_chiusura[i+1]/lista_chiusura[i])
+#    lista_rendimenti = np.append(lista_rendimenti, [rendimento])
+#    i = i + 1
 
 # def print_hi(name):
 #     # Use a breakpoint in the code line below to debug your script.

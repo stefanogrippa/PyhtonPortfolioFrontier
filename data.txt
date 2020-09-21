@@ -1,0 +1,1 @@
+{"people": [{"name": "QQQ", "website": "", "from": ""}, {"name": "FCA.MI", "website": "", "from": ""}, {"name": "L100.L", "website": "", "from": ""}]}
