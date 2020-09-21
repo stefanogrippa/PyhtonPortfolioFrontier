@@ -13,9 +13,13 @@ file1 = open('titoli.txt', 'r')
 Lines = file1.readlines()
 nome_titoli = []
 for line in Lines:
-    print(line)
-    #nome_titoli.append(line)
-nome_titoli=["L100.L", "QQQ"]
+    print('titolo da file di testo=' + line)
+    nome_titoli.append(line)
+
+#nome_titoli.append("L100.L")
+#nome_titoli.append("QQQ")
+
+
 data_inizio='2019-9-14'
 data_fine='2020-9-14'
 print('inizio caricamento')
@@ -29,16 +33,18 @@ indice = 0
 init_notebook_mode(connected=True)
 cf.go_offline()
 
-
+titolo = ""
 for titolo in nome_titoli:
     # MAMMA
     try:
+        #titolo = "" + line + ""
+        print('titolo da vettore=' + titolo)
         dataframe=web.get_data_yahoo(titolo, data_inizio, data_fine, interval='d')
     except:
         print ('titolo non trovato:' + titolo)
         continue
-    print(titolo,dataframe.shape)
-    print(titolo + 'last' ,dataframe.tail())
+    print(line,dataframe.shape)
+    print(line + 'last' ,dataframe.tail())
     print('fine caricamento')
 
 
