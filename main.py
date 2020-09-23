@@ -12,27 +12,30 @@ import pandas_datareader.data as web
 import json
 
 data = {}
+class ScritturaDati:
+    def __init__(self, nomeMiofile):
+        self.nomefile=nomeMiofile
 
-def riempiTabella():
-    data['people'] = []
-    data['people'].append({
-        'name': 'QQQ',
-        'website': '',
-        'from': ''
-    })
-    data['people'].append({
-        'name': 'FCA.MI',
-        'website': '',
-        'from': ''
-    })
-    data['people'].append({
-        'name': 'L100.L',
-        'website': '',
-        'from': ''
-    })
+    def riempiTabella(self):
+        data['people'] = []
+        data['people'].append({
+            'name': 'QQQ',
+            'website': '',
+            'from': ''
+        })
+        data['people'].append({
+            'name': 'FCA.MI',
+            'website': '',
+            'from': ''
+        })
+        data['people'].append({
+            'name': 'L100.L',
+            'website': '',
+            'from': ''
+        })
 
-    with open('data.txt', 'w') as outfile:
-        json.dump(data, outfile)
+        with open(self.nomefile, 'w') as outfile:
+            json.dump(data, outfile)
 
 with open('data.txt') as json_file:
     data = json.load(json_file)
