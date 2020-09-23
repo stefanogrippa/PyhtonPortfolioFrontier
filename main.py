@@ -12,25 +12,27 @@ import pandas_datareader.data as web
 import json
 
 data = {}
-data['people'] = []
-data['people'].append({
-    'name': 'QQQ',
-    'website': '',
-    'from': ''
-})
-data['people'].append({
-    'name': 'FCA.MI',
-    'website': '',
-    'from': ''
-})
-data['people'].append({
-    'name': 'L100.L',
-    'website': '',
-    'from': ''
-})
 
-with open('data.txt', 'w') as outfile:
-    json.dump(data, outfile)
+def riempiTabella():
+    data['people'] = []
+    data['people'].append({
+        'name': 'QQQ',
+        'website': '',
+        'from': ''
+    })
+    data['people'].append({
+        'name': 'FCA.MI',
+        'website': '',
+        'from': ''
+    })
+    data['people'].append({
+        'name': 'L100.L',
+        'website': '',
+        'from': ''
+    })
+
+    with open('data.txt', 'w') as outfile:
+        json.dump(data, outfile)
 
 with open('data.txt') as json_file:
     data = json.load(json_file)
@@ -41,8 +43,8 @@ with open('data.txt') as json_file:
         print('')
 
 
-file1 = open('titoli.txt', 'r')
-Lines = file1.readlines()
+#file1 = open('titoli.txt', 'r')
+#Lines = file1.readlines()
 nome_titoli = []
 for p in data['people']:
     print('titolo da file di testo=' + p['name'])
