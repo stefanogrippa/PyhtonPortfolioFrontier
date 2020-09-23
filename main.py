@@ -45,7 +45,7 @@ with open('data.txt') as json_file:
 
 #file1 = open('titoli.txt', 'r')
 #Lines = file1.readlines()
-nome_titoli = []
+#nome_titoli = []
 for p in data['people']:
     print('titolo da file di testo=' + p['name'])
     #nome_titoli.append(p)
