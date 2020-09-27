@@ -5,18 +5,22 @@
 
 # http://tesi.luiss.it/25592/1/214651_LORETI_LORENZO.pdf
 
-#import pip
-#pip.main(['install', 'pandas_datareader'])
+# import pip
+# pip.main(['install', 'pandas_datareader'])
 
 import pandas_datareader.data as web
 import json
-
+import numpy as np
+import matplotlib.pyplot as plt
+from plotly.offline import init_notebook_mode
+import cufflinks as cf
+# usata solo una volta per scrivere in file json
 
 class ScritturaDati:
-    def __init__(self, nomeMiofile):
-        self.nomefile=nomeMiofile
+    def __init__(self, nomemiofile):
+        self.nomefile = nomemiofile
 
-    def riempiTabella(self):
+    def riempitabella(self):
         data['people'] = []
         data['people'].append({
             'name': 'QQQ',
@@ -37,6 +41,7 @@ class ScritturaDati:
         with open(self.nomefile, 'w') as outfile:
             json.dump(data, outfile)
 
+
 with open('data.txt') as json_file:
     data = json.load(json_file)
     for p in data['people']:
@@ -50,31 +55,24 @@ for p in data['people']:
     print('titolo da file di testo=' + p['name'])
     #nome_titoli.append(p)
 
-
-
-
-data_inizio='2019-9-14'
-data_fine='2020-9-14'
+data_inizio = '2019-9-14'
+data_fine = '2020-9-14'
 print('inizio caricamento')
-import numpy as np
-import matplotlib.pyplot as plt
-from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
-import cufflinks as cf
+
+
 indice = 0
 #lunghezza = len(nome_titoli)
 
 init_notebook_mode(connected=True)
 cf.go_offline()
 
-#titolo = ""
+
 for p in data['people']:
-    # MAMMA
+    print('titolo da vettore=' + p['name'])
     try:
-        #titolo = "" + line + ""
-        print('titolo da vettore=' + p['name'])
-        dataframe=web.get_data_yahoo(p['name'], data_inizio, data_fine, interval='d')
+         dataframe = web.get_data_yahoo(p['name'], data_inizio, data_fine, interval='d')
     except:
-        print ('titolo non trovato:' + p['name'])
+        print('titolo non trovato:' + p['name'])
         continue
     print(p['name'],dataframe.shape)
     print(p['name'] + 'last' ,dataframe.tail())
@@ -97,8 +95,8 @@ for p in data['people']:
     #dataframe.set_index('Date')['Adj'].plot()
     #dataframe.plot(x='Date',y='Close')
     plt.show()
-    nomefilegrafico = p['name'] + '.jpg';
-    plt.savefig(nomefilegrafico);
+    nomefilegrafico = p['name'] + '.jpg'
+    plt.savefig(nomefilegrafico)
 
 #https://michaelsaruggia.com/data-visualization-plotly/
 
