@@ -63,11 +63,9 @@ for p in data['people']:
     ticker = p['name']
     try:
         data = web.DataReader(ticker, 'iex', data_inizio, data_fine)
-        data.index = web.to_datetime(data.index)
-
-        data = web.get_data_yahoo(ticker, data_inizio, data_fine, interval='d')
+        # data.index = web.to_datetime(data.index)
     except:
-        print ('titolo non trovato su iex:' + p['name'])
+        print('titolo non trovato su iex:' + p['name'])
         try:
             data = web.get_data_yahoo(ticker, data_inizio, data_fine, interval='d')
         except:
