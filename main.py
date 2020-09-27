@@ -1,8 +1,3 @@
-# This is a sample Python script.
-
-# Press Maiusc+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
 # http://tesi.luiss.it/25592/1/214651_LORETI_LORENZO.pdf
 
 # import pip
@@ -109,8 +104,6 @@ for p in data['people']:
 # Show the plot
 # plt.show()
 # data.iplot(x=mioViettorex,y=mioVettorey,mode='lines+markers')
-
-
 
 # while(i < lunghezza - 1):
 #    rendimento = np.log(lista_chiusura[i+1]/lista_chiusura[i])
