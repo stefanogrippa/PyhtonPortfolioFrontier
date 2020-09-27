@@ -2,7 +2,7 @@
 
 # import pip
 # pip.main(['install', 'pandas_datareader'])
-import traceback
+#import traceback
 
 import pandas_datareader.data as web
 import json
@@ -90,10 +90,13 @@ for p in data['people']:
     # dataframe.plot(title= titolo + 'Adj. Closing Price')
     # dataframe.set_index('Date')['Adj'].plot()
     # dataframe.plot(x='Date',y='Close')
+    plt.plot()
     plt.show()
     nomefilegrafico = p['name'] + '.jpg'
     plt.savefig(nomefilegrafico)
 
+
+#plt.show()
 # https://michaelsaruggia.com/data-visualization-plotly/
 
 # init_notebook_mode(connected=True)
