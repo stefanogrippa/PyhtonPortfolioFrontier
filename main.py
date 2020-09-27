@@ -11,7 +11,7 @@
 import pandas_datareader.data as web
 import json
 
-data = {}
+
 class ScritturaDati:
     def __init__(self, nomeMiofile):
         self.nomefile=nomeMiofile
@@ -46,15 +46,11 @@ with open('data.txt') as json_file:
         print('')
 
 
-#file1 = open('titoli.txt', 'r')
-#Lines = file1.readlines()
-#nome_titoli = []
 for p in data['people']:
     print('titolo da file di testo=' + p['name'])
     #nome_titoli.append(p)
 
-#nome_titoli.append("L100.L")
-#nome_titoli.append("QQQ")
+
 
 
 data_inizio='2019-9-14'
