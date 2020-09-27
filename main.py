@@ -2,6 +2,7 @@
 
 # import pip
 # pip.main(['install', 'pandas_datareader'])
+import traceback
 
 import pandas_datareader.data as web
 import json
@@ -9,7 +10,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from plotly.offline import init_notebook_mode
 import cufflinks as cf
-# usata solo una volta per scrivere in file json
+
 
 class ScritturaDati:
     def __init__(self, nomemiofile):
@@ -59,22 +60,32 @@ cf.go_offline()
 
 for p in data['people']:
     print('titolo da vettore=' + p['name'])
+    ticker = p['name']
     try:
-        dataframe = web.get_data_yahoo(p['name'], data_inizio, data_fine, interval='d')
+        data = web.DataReader(ticker, 'iex', data_inizio, data_fine)
+        data.index = web.to_datetime(data.index)
+
+        data = web.get_data_yahoo(ticker, data_inizio, data_fine, interval='d')
     except:
-        print('titolo non trovato:' + p['name'])
-        continue
-    print(p['name'], dataframe.shape)
-    print(p['name'] + 'last', dataframe.tail())
+        print ('titolo non trovato su iex:' + p['name'])
+        try:
+            data = web.get_data_yahoo(ticker, data_inizio, data_fine, interval='d')
+        except:
+            print('titolo non trovato su yahoo:' + p['name'] + ':' + traceback.format_exc())
+            continue
+    nomefilecsv = p['name'] + 'storico.csv'
+    # dataframe.tocsv(nomefilecsv)
+    print(p['name'], data.shape)
+    print(p['name'] + 'last', data.tail())
     print('fine caricamento')
 
-    quotazioni = dataframe.values
+    quotazioni = data.values
     lista_chiusura = quotazioni[:, 5]
     lista_rendimenti = np.array([])
 
     lunghezza = lista_chiusura.size
 
-    quotaChiusura = dataframe['Close']
+    quotaChiusura = data['Close']
     quotaChiusura.plot(title=p['name'] + ' quota')
     # returns = dataframe['Close'].pct_change()
     # ((1 + returns).cumprod() - 1).plot(title= titolo + ' Cumulative Returns')
