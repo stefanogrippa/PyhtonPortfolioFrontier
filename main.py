@@ -67,7 +67,7 @@ for p in data['people']:
     except:
         print('titolo non trovato su iex:' + p['name'])
         try:
-            data = web.get_data_yahoo(ticker, data_inizio, data_fine, interval='d')
+            data = web.DataReader(ticker, 'yahoo', data_inizio, data_fine)
         except:
             print('titolo non trovato su yahoo:' + p['name'] + ':' + traceback.format_exc())
             continue
