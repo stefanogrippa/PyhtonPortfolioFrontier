@@ -18,21 +18,21 @@ class ScritturaDati:
         self.nomefile = nomemiofile
 
     def riempitabella(self):
-        data['people'] = []
-        data['people'].append({
+        data['security'] = []
+        data['security'].append({
             'name': 'QQQ',
             'website': '',
-            'from': ''
+            'description': ''
         })
-        data['people'].append({
+        data['security'].append({
             'name': 'FCA.MI',
             'website': '',
-            'from': ''
+            'description': ''
         })
-        data['people'].append({
+        data['security'].append({
             'name': 'L100.L',
             'website': '',
-            'from': ''
+            'description': ''
         })
 
         with open(self.nomefile, 'w') as outfile:
@@ -41,18 +41,19 @@ class ScritturaDati:
 nomeFileDati = 'data.json'
 with open(nomeFileDati) as json_file:
     data = json.load(json_file)
-    for p in data['people']:
+    print(data['number_of_days'])
+    for p in data['security']:
         print('Name: ' + p['name'])
         print('Website: ' + p['website'])
-        print('From: ' + p['from'])
+        print('description: ' + p['description'])
         print('')
 
 
-for p in data['people']:
+for p in data['security']:
     print('titolo da file di testo=' + p['name'])
 
 
-data_inizio = datetime.date.fromordinal(datetime.date.today().toordinal()-365)
+data_inizio = datetime.date.fromordinal(datetime.date.today().toordinal()-int(data['number_of_days']))
 str_data_inizio = data_inizio.__str__()
 print ("data inizio = " + str_data_inizio)
 
@@ -67,7 +68,7 @@ init_notebook_mode(connected=True)
 cf.go_offline()
 
 
-for p in data['people']:
+for p in data['security']:
     print('titolo da vettore=' + p['name'])
     ticker = p['name']
     try:
@@ -94,7 +95,7 @@ for p in data['people']:
     lunghezza = lista_chiusura.size
 
     quotaChiusura = data['Close']
-    quotaChiusura.plot(title= p['from'] + ' quota')
+    quotaChiusura.plot(title= p['description'] + ' quota')
     # returns = dataframe['Close'].pct_change()
     # ((1 + returns).cumprod() - 1).plot(title= titolo + ' Cumulative Returns')
     # dataframe.plot(title= titolo + 'Adj. Closing Price')
