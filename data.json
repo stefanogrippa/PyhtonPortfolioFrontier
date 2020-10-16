@@ -1,0 +1,21 @@
+
+{
+   "number_of_days": "3650",
+   "security":[
+      {
+         "name":"QQQ",
+         "website":"",
+         "description":"Invesco QQQ"
+      },
+      {
+         "name":"FCA.MI",
+         "website":"",
+         "description":"FCA"
+      },
+      {
+         "name":"L100.L",
+         "website":"",
+         "description":"FTSE 100"
+      }
+   ]
+}
