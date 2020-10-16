@@ -4,15 +4,17 @@
 # pip.main(['install', 'pandas_datareader'])
 #import traceback
 import traceback
+from time import strftime
 
 import pandas_datareader.data as web
 import json
-import datetime
+
 import numpy as np
 import matplotlib.pyplot as plt
 from plotly.offline import init_notebook_mode
 import cufflinks as cf
-from datetime import date
+import datetime
+
 
 class ScritturaDati:
     def __init__(self, nomemiofile):
@@ -39,7 +41,7 @@ class ScritturaDati:
         with open(self.nomefile, 'w') as outfile:
             json.dump(data, outfile)
 
-nomeFileDati= 'data.json'
+nomeFileDati = 'data.json'
 with open(nomeFileDati) as json_file:
     data = json.load(json_file)
     for p in data['people']:
@@ -53,12 +55,20 @@ for p in data['people']:
     print('titolo da file di testo=' + p['name'])
 
 
-#data_inizio = datetime.timedelta(days=-365)
-data_inizio='2019-10-15'
-data_fine='2020-10-15'
+data_inizio = datetime.date.fromordinal(datetime.date.today().toordinal()-365)
+str_data_inizio = data_inizio.__str__()
+print ("data inizio = " + str_data_inizio)
 
 
-#data_fine = datetime.timedelta(days=-1)
+
+
+#data_inizio='2019-10-15'
+#data_fine='2020-10-15'
+
+
+data_fine = datetime.date.fromordinal(datetime.date.today().toordinal()-1)
+str_data_fine = data_fine.__str__()
+print ("data fine = " + str_data_fine)
 print('inizio caricamento')
 
 init_notebook_mode(connected=True)
@@ -69,7 +79,7 @@ for p in data['people']:
     print('titolo da vettore=' + p['name'])
     ticker = p['name']
     try:
-        data = web.get_data_yahoo(ticker, data_inizio, data_fine, interval='d')
+        data = web.get_data_yahoo(ticker, str_data_inizio, str_data_fine, interval='d')
         # data.index = web.to_datetime(data.index)
     except:
         print('titolo non trovato su yahoo:' + p['name'])
