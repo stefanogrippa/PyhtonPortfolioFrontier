@@ -67,7 +67,7 @@ print('inizio caricamento')
 init_notebook_mode(connected=True)
 cf.go_offline()
 
-
+i = 1
 for p in data['security']:
     print('titolo da vettore=' + p['name'])
     ticker = p['name']
@@ -94,19 +94,19 @@ for p in data['security']:
 
     lunghezza = lista_chiusura.size
 
-    quotaChiusura = data['Close']
+    quotaChiusura = data['Adj Close']
     quotaChiusura.plot(title= p['description'] + ' quota')
     # returns = dataframe['Close'].pct_change()
     # ((1 + returns).cumprod() - 1).plot(title= titolo + ' Cumulative Returns')
     # dataframe.plot(title= titolo + 'Adj. Closing Price')
     # dataframe.set_index('Date')['Adj'].plot()
     # dataframe.plot(x='Date',y='Close')
-    plt.plot()
+    #plt.subplot(3,1,i)
+    i = i + 1
     plt.show()
-    nomefilegrafico = p['name'] +  '.jpg'
-    plt.savefig(nomefilegrafico)
+    nomefilegrafico =  'titoli.jpg'
 
-
+plt.savefig(nomefilegrafico)
 #plt.show()
 # https://michaelsaruggia.com/data-visualization-plotly/
 
