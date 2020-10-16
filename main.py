@@ -2,13 +2,10 @@
 
 # import pip
 # pip.main(['install', 'pandas_datareader'])
-#import traceback
-import traceback
-from time import strftime
 
+import traceback
 import pandas_datareader.data as web
 import json
-
 import numpy as np
 import matplotlib.pyplot as plt
 from plotly.offline import init_notebook_mode
@@ -61,11 +58,6 @@ print ("data inizio = " + str_data_inizio)
 
 
 
-
-#data_inizio='2019-10-15'
-#data_fine='2020-10-15'
-
-
 data_fine = datetime.date.fromordinal(datetime.date.today().toordinal()-1)
 str_data_fine = data_fine.__str__()
 print ("data fine = " + str_data_fine)
@@ -102,7 +94,7 @@ for p in data['people']:
     lunghezza = lista_chiusura.size
 
     quotaChiusura = data['Close']
-    quotaChiusura.plot(title=p['name'] + ' quota')
+    quotaChiusura.plot(title= p['from'] + ' quota')
     # returns = dataframe['Close'].pct_change()
     # ((1 + returns).cumprod() - 1).plot(title= titolo + ' Cumulative Returns')
     # dataframe.plot(title= titolo + 'Adj. Closing Price')
@@ -110,7 +102,7 @@ for p in data['people']:
     # dataframe.plot(x='Date',y='Close')
     plt.plot()
     plt.show()
-    nomefilegrafico = p['name'] + '.jpg'
+    nomefilegrafico = p['name'] +  '.jpg'
     plt.savefig(nomefilegrafico)
 
 
